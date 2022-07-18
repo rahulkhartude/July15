@@ -4,32 +4,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArmstrongNumber
+namespace BinarySearch
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter the number");
-            int number=Convert.ToInt32(Console.ReadLine());
-
-            int result = CheckArmstrong(number);
-            if(result==number)
-                Console.WriteLine($"{number} is an Armstrong Number");
-            else 
-                Console.WriteLine($"{number} is not an Armstrong Number");
-        }
-        public static int CheckArmstrong(int number)
-        {
-            int sum = 0;
-            while (number>0)
+            int[] array = { 7,9,11,13,14,15,16,20,30};
+            int number = 130;
+            int start = 0;
+            int end = array.Length;
+            int count = 0;
+            while (start <= end)
             {
-                int remainder=number%10;
-                sum += (remainder*remainder*remainder);
-                number = number/10;
+                int mid = (start + end) / 2;
+                if (number == array[mid])
+                {
+                    Console.WriteLine($"{number} is find at index: " + mid);
+                    break;
+                }
+                else if (number < array[mid])
+                {
+                    end = mid - 1;
+                }
+                else if (number > array[mid])
+                {
+                    start = mid + 1;
+                }
+                if (end > start)
+                {
+                    count++;
+                break;
+                 }
+                
+                
+            }
+            if (count == 1)
+            {
+                Console.WriteLine("Number is not present");
             }
 
-            return sum;
         }
     }
 }
